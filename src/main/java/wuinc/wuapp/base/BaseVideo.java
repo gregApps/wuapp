@@ -52,7 +52,7 @@ public class BaseVideo extends Activity{
             nameValuePair.add(new BasicNameValuePair("userLike[]", video.getUserLike().get(i)));
         }
 
-        AddData =new AddDataAsyncTask();
+        AddData = new AddDataAsyncTask();
         AddData.execute(nameValuePair);
         video.setId(AddData.get());
         return video;

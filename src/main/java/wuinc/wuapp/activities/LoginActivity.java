@@ -16,14 +16,11 @@ import wuinc.wuapp.User;
 import wuinc.wuapp.base.BaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button sign_in = null;
-    private Button sign_up = null;
+    private Button sign_in;
+    private Button sign_up;
+
     private EditText mPseudoView;
     private EditText mPasswordView;
-
-
-    private String mPseudo = "";
-    private String mPassword = "";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -39,10 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mPseudoView = (EditText) findViewById (R.id.pseudo);
-        mPasswordView = (EditText) findViewById (R.id.password);
+        EditText mPseudoView = (EditText) findViewById (R.id.pseudo);
+        EditText mPasswordView = (EditText) findViewById (R.id.password);
 
-        sign_in=(Button) findViewById(R.id.button_sign_in);
+        sign_in = (Button) findViewById(R.id.button_sign_in);
         sign_in.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick (View v){
@@ -58,13 +55,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClick_signIn(View v) {
-        mPseudo = mPseudoView.getText().toString();
-        mPassword = mPasswordView.getText().toString();
-        BaseUser mIdentification = new BaseUser();
+        String mPseudo = mPseudoView.getText().toString();
+        String mPassword = mPasswordView.getText().toString();
+        BaseUser load_user = new BaseUser();
         User user_logging;
-        if ((!mPseudo.equals(""))&&(!mPassword.equals(""))){
+        if ((mPseudo.equals(""))&&(mPassword.equals(""))){
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a user name/password to attempt to log in", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+
             try {
-                user_logging = mIdentification.getUserByPseudo(mPseudo);
+                user_logging = load_user.getUserByPseudo(mPseudo);
 
                 if (mPassword.equals(user_logging.getPassword())){
                     Intent login = new Intent(getApplicationContext(), NewsFeedActivity.class);
@@ -77,12 +78,14 @@ public class LoginActivity extends AppCompatActivity {
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Toast toast = Toast.makeText(getApplicationContext(), "InterruptedException while attempting to access to the data base", Toast.LENGTH_SHORT);
+                toast.show();
+
             } catch (ExecutionException e) {
                 e.printStackTrace();
+                Toast toast = Toast.makeText(getApplicationContext(), "ExecutionException while attempting to access to the data base", Toast.LENGTH_SHORT);
+                toast.show();
             }
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a user name/password to attempt to log in", Toast.LENGTH_SHORT);
-            toast.show();
         }
 
     }

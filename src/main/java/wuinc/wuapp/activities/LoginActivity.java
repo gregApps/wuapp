@@ -61,12 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         mPseudo = mPseudoView.getText().toString();
         mPassword = mPasswordView.getText().toString();
         BaseUser mIdentification = new BaseUser();
-        User user_logging = new User();
-        if ((mPseudo != "")&&(mPassword != "")){
+        User user_logging;
+        if ((!mPseudo.equals(""))&&(!mPassword.equals(""))){
             try {
                 user_logging = mIdentification.getUserByPseudo(mPseudo);
 
-                if (user_logging.getPassword() == mPassword){
+                if (mPassword.equals(user_logging.getPassword())){
                     Intent login = new Intent(getApplicationContext(), NewsFeedActivity.class);
                     login.putExtra("pseudo_user", mPseudo);
                     startActivity(login);

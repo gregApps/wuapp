@@ -1,7 +1,6 @@
 package wuinc.wuapp;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class User {
@@ -19,6 +18,10 @@ public class User {
 	
 	private FriendsList friendsList;
 	private Mailbox mailbox; //intern mailbox for friend requests and challenges
+
+	//empty constructor
+	public User(){
+	}
 
 	//constructor
 	public User(String pseudo, String email, String password){

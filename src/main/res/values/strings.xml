@@ -11,7 +11,7 @@
     <string name="warning_pseudo">Your pseudo must be unique and cannot be changed.</string>
     <string name="prompt_first_name">First name*</string>
     <string name="prompt_last_name">Last name*</string>
-    <string name="prompt_birth_date">Birth date* (ex: 04/07/1994)</string>
+    <string name="prompt_birth_date">Birth date* (ex: 31/07/1994)</string>
     <string name="prompt_email">Address email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_password_2">Password confirmation</string>
